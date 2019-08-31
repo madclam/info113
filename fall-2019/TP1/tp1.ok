@@ -1,0 +1,15 @@
+{
+  "name": "TP1: Data Types",
+  "endpoint": "u-psud/l1datasci/fa19/tp1",
+  "src": [
+    "TP1.ipynb"
+  ],
+  "tests": {
+      "tests/q*.py": "ok_test"
+  },
+  "protocols": [
+      "file_contents",
+      "grading",
+      "backup"
+  ]
+}
