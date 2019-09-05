@@ -1,0 +1,17 @@
+# Logiciels requis pour utiliser et travailler sur les documents du cours Info 114
+name: info-114
+
+channels:
+- conda-forge
+
+dependencies:
+- notebook
+- matplotlib
+- seaborn
+- pandas
+- pillow
+- sklearn
+- nbgrader
+- pip
+- pip:
+    - nbgitpuller
