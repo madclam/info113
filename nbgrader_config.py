@@ -660,7 +660,7 @@ c.IncludeHeaderFooter.header = "source/header.ipynb"
 #c.Exchange.path_includes_course = False
 
 ## The nbgrader exchange directory writable to everyone. MUST be preexisting.
-#c.Exchange.root = '/srv/nbgrader/exchange'
+c.Exchange.root = 'exchange'
 
 ## Format string for timestamps
 #c.Exchange.timestamp_format = '%Y-%m-%d %H:%M:%S.%f %Z'
