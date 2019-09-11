@@ -79,10 +79,9 @@ run () {
 }
 
 fetch () {
-    archive=$1
-    run wget "$url/$archive.zip"
-    run unzip "$archive.zip"
-    run rm "$archive.zip"
+    ASSIGNMENT=$1
+    # Can't yet use `run` on pipe command
+    curl -s https://gitlab.u-psud.fr/info114/sujets/-/archive/master/sujets-master.tar.gz -o - | tar --strip-components=1 -zvxf - sujets-master/$ASSIGNMENT
 }
 
 submit() {
