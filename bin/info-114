@@ -1,14 +1,16 @@
 #!/bin/sh
 
-url="http://Nicolas.Thiery.name/Enseignement/Info114/"
 if [ -n "$JUPYTERHUB_USER" ]; then
     USER=`basename -s -at-u-psud.fr $JUPYTERHUB_USER`
 fi
 SIF=tp-ssh1.dep-informatique.u-psud.fr
 COURSE=Info114
 SCRIPT=info-114
-#EXCHANGE=/public/info-114/exchange
-EXCHANGE=~nthiery/info-114/exchange
+ROOT=/public/info-114
+EXCHANGE=~$ROOT/exchange
+GIT=https://gitlab.u-psud.fr/$course
+GIT_SUJETS=$GIT/sujets
+
 export LANG=fr_FR.UTF-8
 
 help () {
@@ -17,10 +19,14 @@ help () {
 Aide pour l'utilisation de la commande $SCRIPT
 ===============================================
 
-Télécharger et extraire l'archive pour un TP ou un projet (ici pour la semaine 1):
+Télécharger le sujet pour un TP ou un projet (ici pour Semaine1):
 
        cd ~/$COURSE
        $SCRIPT fetch Semaine1
+
+Synchroniser son travail avec les salles de TP du SIF (ici pour Semaine1)
+
+     $SCRIPT sync Semaine1
 
 Soumettre son TP ou projet (ici pour la semaine 1):
 
@@ -42,10 +48,6 @@ Aide pour l'utilisation de la commande $SCRIPT
 Lancer une commande arbitraire dans l'environnement conda:
 
      $SCRIPT run commande arg1 arg2
-
-Mettre à jour son répertoire $COURSE à partir du répertoire éponyme sur les machines du SIF (par rsync):
-
-     $SCRIPT sync
 
 Monter le répertoire $COURSE depuis les machines du SIF par sshfs:
 
@@ -81,30 +83,41 @@ run () {
 fetch () {
     ASSIGNMENT=$1
     # Can't yet use `run` on pipe command
-    curl -s https://gitlab.u-psud.fr/info114/sujets/-/archive/master/sujets-master.tar.gz -o - | tar --strip-components=1 -zvxf - sujets-master/$ASSIGNMENT
+    curl -s $GIT_SUJETS/-/archive/master/sujets-master.tar.gz -o - | tar --strip-components=1 -zvxf - sujets-master/$ASSIGNMENT
 }
 
 submit() {
     ASSIGNMENT=$1
     if [ -n "$JUPYTERHUB_USER" ]; then # Sur le serveur JupyterHub
-        echo $SCRIPT: transfert du dossier $ASSIGNMENT sur les machines du SIF
-        run rsync --update -avz  $HOME/$COURSE/$ASSIGNMENT $USER@$SIF:.$COURSE/$ASSIGNMENT
-        echo $SCRIPT: soumission du dossier $ASSIGNMENT
-        run ssh $USER@$SIF "cd .$COURSE && $SCRIPT submit $ASSIGNMENT"
+        sync()
+        echo $SCRIPT: soumission du dossier $COURSE/$ASSIGNMENT
+        run ssh $USER@$SIF "cd $COURSE && $SCRIPT submit $ASSIGNMENT"
     else
-        run nbgrader submit --Exchange.root=/public/info-111/exchange --course=$COURSE $ASSIGNMENT
+        run nbgrader submit --Exchange.root=$EXCHANGE --course=$COURSE $ASSIGNMENT
     fi
 }
 
 collect() {
+    cd $ROOT
     ASSIGNMENT=$1
-    run nbgrader collect --Exchange.root=/public/info-111/exchange --course=$COURSE $ASSIGNMENT
+    run nbgrader collect --Exchange.root=$EXCHANGE --course=$COURSE $ASSIGNMENT
+    run git pull
+    run git add submitted
+    run git -m "Collect $ASSIGNMENT" submitted
+    run git push
 }
 
 mount() {
     cd $HOME
     run mkdir -p $COURSE
     run sshfs $USER@$SIF:$COURSE $COURSE
+}
+
+sync() {
+    ASSIGNMENT=$1
+    echo $SCRIPT: synchronisation du dossier $COURSE/$ASSIGNMENT avec les salles de TP du SIF
+    cd $HOME
+    run unison $COURSE/$ASSIGNMENT $USER@$SIF:$COURSE/$ASSIGNMENT
 }
 
 rsync_from_sif() {
