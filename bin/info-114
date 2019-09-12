@@ -8,7 +8,7 @@ COURSE=Info114
 SCRIPT=info-114
 ROOT=/public/info-114
 EXCHANGE=~$ROOT/exchange
-GIT=https://gitlab.u-psud.fr/$course
+GIT=https://gitlab.u-psud.fr/$COURSE
 GIT_SUJETS=$GIT/sujets
 
 export LANG=fr_FR.UTF-8
