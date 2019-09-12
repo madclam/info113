@@ -187,8 +187,7 @@ case $command in
         mount
         exit 0;;
     sync)
-        rsync_from_sif
-        rsync_to_sif
+        sync
         exit 0;;
     clean_root_files)
         clean_root_files
