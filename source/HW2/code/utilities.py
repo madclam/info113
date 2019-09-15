@@ -118,8 +118,13 @@ def split_data(X, Y, verbose = True, seed=0):
 		else: pass
 	return (train_index, test_index)
 	
-def make_scatter_plot(X, F, train_index, test_index, filter=None, test_labels=None):
-	'''This scatter plot function allows us to show the images.'''
+def make_scatter_plot(X, F, train_index, test_index, filter=None, predicted_labels=[], show_diag=False):
+	'''This scatter plot function allows us to show the images.
+		predicted_labels can either be: 
+				- None (queries shown as question marks)
+				- a vector of +-1 predicted values
+				- the string "GroundTruth" (to display the test images).'''
+	fruit = np.array(['B', 'A'])
 	fig, ax = plt.subplots()
 	# Plot training examples
 	x = X[train_index,0]
@@ -137,11 +142,20 @@ def make_scatter_plot(X, F, train_index, test_index, filter=None, test_labels=No
 	# Plot test examples
 	x = X[test_index,0]
 	y = X[test_index,1]
-	if len(test_labels) >0:
-		label = (Ytest_predicted+1)/2
+
+	if len(predicted_labels)>0 and not(predicted_labels == "GroundTruth"):
+		label = (predicted_labels+1)/2
 		ax.scatter(x, y, s=250, marker='s', color='k') 
 		for x0, y0, lbl in zip(x, y, label):
-			ax.text(x0-0.05, y0-0.05, test_labels[int(lbl)], color="w", fontsize=12, weight='bold')
+			ax.text(x0-0.05, y0-0.05, fruit[int(lbl)], color="w", fontsize=12, weight='bold')
+	elif predicted_labels == "GroundTruth":
+		f = F[test_index]
+		ax.scatter(x, y, s=500, marker='s', color='k') 
+		for x0, y0, path in zip(x, y, f):
+			img = get_image(path)
+			img = filter(img)
+			ab = AnnotationBbox(OffsetImage(img), (x0, y0), frameon=False)
+			ax.add_artist(ab)
 	else: 	# Plot UNLABELED test examples
 		f = F[test_index]
 		ax.scatter(x, y, s=250, marker='s', c='k') 
@@ -152,5 +166,9 @@ def make_scatter_plot(X, F, train_index, test_index, filter=None, test_labels=No
 	plt.ylim(-3, 3)
 	plt.xlabel('$x_1$ = Redness')
 	plt.ylabel('$x_2$ = Elongation')
+	
+	# Add line on the diagonal
+	if show_diag:
+		plt.plot([-3, 3], [-3, 3], 'k--')
 	return
 	
