@@ -125,7 +125,7 @@ c.IncludeHeaderFooter.header = "source/header.ipynb"
 #c.CourseDirectory.feedback_directory = 'feedback'
 
 ## List of file names or file globs to be ignored when copying directories.
-#c.CourseDirectory.ignore = ['.ipynb_checkpoints', '*.pyc', '__pycache__']
+c.CourseDirectory.ignore = ['.ipynb_checkpoints', '.nbgrader.log', '*.pyc', '__pycache__']
 
 ## File glob to match notebook names, excluding the '.ipynb' extension. This can
 #  be changed to filter by notebook.
