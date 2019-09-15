@@ -1,6 +1,6 @@
 # Load general libraries
 import os, re
-from glob import glob as ls
+import glob
 from PIL import Image
 import numpy as np
 import matplotlib.pyplot as plt
@@ -19,7 +19,21 @@ def get_files(datadir, type = 'a'):
             if not re.search('.ipynb|.DS_Store', name) and re.search(type, name):
                 file_list.append(os.path.join(root, name))
     return sorted(file_list, key = str)
-    
+
+def get_images(datadir, pattern="*.png"):
+    """
+    Return all the images in `datadir` whose name match the pattern.
+
+    Example:
+
+    This returns all png images in `dataset/` whose name starts
+    with `a`:
+
+        >>> get_images('dataset', 'a*.png')
+    """
+    return [Image.open(path)
+            for path in glob.glob(os.path.join(datadir, pattern))]
+
 def get_image(path):
     ''' Function that gets an image unsing PIL and sets white backgrounds to transparent. '''
     img = Image.open(path)
@@ -35,23 +49,17 @@ def get_image(path):
     img.putdata(newData) # Get new img ready
     return img
 
-def show_images(all_files, filter = None, columns = 5, file_idx=None):
+def show_images(images, columns = 5):
     ''' Function that shows the images whose names are given in the list all_files. 
         Optionally provide a filter, which is a function to apply to the images.
         The filter takes a PIL image as input and returns either a PIL image or a numpy array.
         The files are re-ordered according to file_idx.'''
-    if file_idx:
-    	all_files = all_files[file_idx]
-    rows = len(all_files)/columns
+    rows = len(images)/columns
     fig=plt.figure(figsize=(columns, rows))
     k=1
-    for filename in all_files:
-        img=get_image(filename)
-        # Filter the image
-        if filter:
-            img = filter(img)
+    for img in images:
         fig.add_subplot(rows, columns, k)
-        plt.imshow(img) 
+        plt.imshow(img)
         plt.tick_params(axis='both', labelsize=0, length = 0)
         plt.grid(b=False)
         k=k+1
