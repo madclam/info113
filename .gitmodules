@@ -1,6 +1,3 @@
-[submodule "sujets"]
-	path = sujets
-	url = git@gitlab.u-psud.fr:info114/sujets.git
 [submodule "exchange"]
 	path = exchange
 	url = git@gitlab.u-psud.fr:Info114/2019-2020/exchange.git
