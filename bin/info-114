@@ -83,7 +83,7 @@ run () {
 fetch () {
     ASSIGNMENT=$1
     # Can't yet use `run` on pipe command
-    curl -s $GIT_SUJETS/-/archive/master/sujets-master.tar.gz -o - | tar --strip-components=1 -zvxf - sujets-master/$ASSIGNMENT
+    curl -s $GIT_SUJETS/-/archive/master/sujets-master.tar.gz -o - | tar --strip-components=1 --backup=simple -zvxf  - sujets-master/$ASSIGNMENT
 }
 
 submit() {
