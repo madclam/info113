@@ -12,8 +12,8 @@ dependencies:
 - pillow
 - scikit-learn
 - nbgrader
+- nbdime
 - pip
 - pip:
     - ordo
-    - nbdime
     - .
