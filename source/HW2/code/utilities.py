@@ -54,7 +54,7 @@ def show_images(images, columns = 5):
         Optionally provide a filter, which is a function to apply to the images.
         The filter takes a PIL image as input and returns either a PIL image or a numpy array.
         The files are re-ordered according to file_idx.'''
-    rows = len(images)/columns
+    rows = max(len(images)/columns, 1)
     fig=plt.figure(figsize=(columns, rows))
     k=1
     for img in images:
@@ -63,7 +63,8 @@ def show_images(images, columns = 5):
         plt.tick_params(axis='both', labelsize=0, length = 0)
         plt.grid(b=False)
         k=k+1
- 
+    return fig
+
 def preprocess_data(data_dir, extract_features, standardize=False, verbose = False):      
     ''' Function that preprocesses all files and returns an array X with examples in lines
     	and features in column, and a column array Y with truth values.'''
