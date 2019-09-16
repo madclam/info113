@@ -1,7 +1,5 @@
 from utilities import *
 
-# Write your code here
-
 ### BEGIN SOLUTION
 def crop_image(img, crop_size = 32):
     ''' Extract the `crop_size` x `crop_size` pixels from the center of the PIL image `img`.'''
@@ -81,3 +79,4 @@ def extract_features(img, verbose = True):
     if verbose: print('elongation={0:5.2f}'.format(elongation))
     return [redness, elongation]
 
+### END SOLUTION
