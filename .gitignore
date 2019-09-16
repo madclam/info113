@@ -3,3 +3,4 @@ fall-2019/HW1/.ipynb_checkpoints
 .nbgrader.log
 release
 gradebook.db
+__pycache__/
