@@ -1,0 +1,22 @@
+# -*- coding: utf-8 -*-
+#! env python
+
+import fileinput
+import re
+regexp_begin = re.compile('(.*)### BEGIN SOLUTION')
+regexp_end  = re.compile('(.*)### *END SOLUTION$')
+
+input = fileinput.input()
+lineno = 1;
+state = "code"
+for line in input:
+    if state == "code":
+        if regexp_begin.match(line):
+            state == "commented"
+            print("### INSERT YOUR CODE HERE")
+            break
+        else:
+            print(line)
+    else:
+        if regexp_end.match(line):
+            state = "code"
