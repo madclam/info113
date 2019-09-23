@@ -4,11 +4,6 @@ import io
 from setuptools import setup
 from setuptools.command.install import install
 
-import shutil
-class CustomInstallCommand(install):
-    def run(self):
-        install.run(self)
-
 setup(
     name = "info-114",
     version = "0.1",
@@ -24,7 +19,7 @@ setup(
       'Programming Language :: C++',
     ], # classifiers list: https://pypi.python.org/pypi?%3Aaction=list_classifiers
     scripts=['info-114'],
-    cmdclass={
-        'install': CustomInstallCommand,
-    },
+    data_files=[
+        ("etc/jupyter",               ["nbgrader_config.py"]),
+    ],
 )
