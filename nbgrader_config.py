@@ -9,7 +9,11 @@ c = get_config()
 c.Exchange.course_id = "Info114"
 
 # Update this list with other assignments you want
-c.CourseDirectory.db_assignments = [dict(name="ps1")]
+c.CourseDirectory.db_assignments = [
+    dict(name="HW1", duedate="2019-09-14 23:59:00 UTC"),
+    dict(name="HW2", duedate="2019-09-23 23:59:00 UTC"),
+    dict(name="HW3", duedate="2019-10-04 23:59:00 UTC"),
+]
 
 # Change the students in this list with that actual students in
 # your course
