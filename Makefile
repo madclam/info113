@@ -5,7 +5,7 @@ ENVIRONMENT=binder
 HW%::
 	nbgrader assign --force $@
 	cd release/$@/code && python ../../../bin/strip-code my_utilities.py > my_utilities.py.new && mv my_utilities.py.new my_utilities.py
-	nbgrader release --force $@
+	nbgrader release_assignment --force $@
 	make sujets
 
 sujets::
