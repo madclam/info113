@@ -8,4 +8,4 @@ c.Exchange.root = '/public/info-114/exchange'
 c.ExchangeCollect.check_owner=False
 
 c.CourseDirectory.ignore = ['.ipynb_checkpoints', '*.pyc', '__pycache__', 'feedback']
-c.CourseDirectory.max_file_size = 100 # Kb
+c.CourseDirectory.max_file_size = 1000 # Kb
