@@ -6,7 +6,7 @@ c = get_config()
 
 # You only need this if you are running nbgrader on a shared
 # server set up.
-c.Exchange.course_id = "Info114"
+c.CourseDir.course_id = "Info114"
 
 # Update this list with other assignments you want
 c.CourseDirectory.db_assignments = [
