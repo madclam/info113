@@ -23,7 +23,7 @@ setup(
       'Topic :: Scientific/Engineering',
       'Programming Language :: C++',
     ], # classifiers list: https://pypi.python.org/pypi?%3Aaction=list_classifiers
-    scripts=['bin/info-114'],
+    scripts=['info-114'],
     cmdclass={
         'install': CustomInstallCommand,
     },
