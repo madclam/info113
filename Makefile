@@ -1,3 +1,6 @@
+COURSE=Info114
+course=info-114
+ENVIRONMENT=binder
 
 HW2::
 	nbgrader assign --force HW2
@@ -14,3 +17,9 @@ sujets::
 	cd exchange && git commit -m "Update outbound submodule" Info114/outbound && git push
 	git commit -m "Update exchange submodule" exchange && git push
 
+update-environment:
+	rsync -avz --relative $(ENVIRONMENT) exchange/$(COURSE)/outbound/
+	cd exchange/$(COURSE)/outbound/ && git add $(ENVIRONMENT) && git commit -m "Updated environment" && git pull && git push
+	rsync -avz --relative $(ENVIRONMENT) ComputerLabInfrastructure/
+	cd ComputerLabInfrastructure/ && git add $(ENVIRONMENT) && git commit -m "Updated environment" && git pull && git push
+	ssh sif $(course) env update

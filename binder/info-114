@@ -98,9 +98,10 @@ submit() {
 }
 
 collect() {
-    cd $ROOT
     ASSIGNMENT=$1
-    run nbgrader collect --Exchange.root=$EXCHANGE --course=$COURSE $ASSIGNMENT
+    # Won't be needed once nbgrader PR #1222 is merged
+    cd $ROOT/exchange/$COURSE/
+    run nbgrader collect $ASSIGNMENT
     run git pull
     run git add submitted
     run git -m "Collect $ASSIGNMENT" submitted
