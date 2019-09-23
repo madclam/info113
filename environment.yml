@@ -13,6 +13,7 @@ dependencies:
 - scikit-learn
 - nbgrader
 - nbdime
+- jupyter_contrib_nbextensions
 - pip
 - pip:
     - ordo
