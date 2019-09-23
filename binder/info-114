@@ -7,7 +7,7 @@ SIF=tp-ssh1.dep-informatique.u-psud.fr
 COURSE=Info114
 SCRIPT=info-114
 ROOT=/public/info-114
-EXCHANGE=~$ROOT/exchange
+EXCHANGE=$ROOT/exchange
 GIT=https://gitlab.u-psud.fr/$COURSE
 GIT_SUJETS=$GIT/sujets
 
