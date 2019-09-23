@@ -9,6 +9,7 @@ dependencies:
 - matplotlib
 - seaborn
 - pandas
+- qgrid
 - pillow
 - scikit-learn
 - nbgrader
