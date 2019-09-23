@@ -15,9 +15,13 @@ sujets::
 	git commit -m "Update exchange submodule" exchange && git push
 
 update-environment:
+	@echo Update outbound environment description
 	rsync -avz --relative $(ENVIRONMENT) exchange/$(COURSE)/outbound/
 	-cd exchange/$(COURSE)/outbound/ && git add $(ENVIRONMENT) && git commit -m "Updated environment" && git pull && git push
+	@echo Update computer lab environment description
 	rsync -avz --relative $(ENVIRONMENT) ComputerLabInfrastructure/
 	-cd ComputerLabInfrastructure/ && git add $(ENVIRONMENT) && git commit -m "Updated environment" && git pull && git push
+	@echo Update local environment
 	cd binder && conda env update && ./postBuild
-	ssh sif $(course) env update
+	@echo Update computer lab environment
+	ssh sif -t $(course) env update
