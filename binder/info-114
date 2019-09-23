@@ -190,6 +190,12 @@ case $command in
     sync)
         sync_unison
         exit 0;;
+    env)
+        cd $ROOT/binder
+        git pull
+        run conda env $1
+        run ./postBuild
+        exit 0;;
     clean_root_files)
         clean_root_files
         exit 0;;

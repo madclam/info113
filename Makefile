@@ -22,4 +22,5 @@ update-environment:
 	cd exchange/$(COURSE)/outbound/ && git add $(ENVIRONMENT) && git commit -m "Updated environment" && git pull && git push
 	rsync -avz --relative $(ENVIRONMENT) ComputerLabInfrastructure/
 	cd ComputerLabInfrastructure/ && git add $(ENVIRONMENT) && git commit -m "Updated environment" && git pull && git push
+	$(course) env update
 	ssh sif $(course) env update
