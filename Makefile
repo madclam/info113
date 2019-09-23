@@ -19,8 +19,8 @@ sujets::
 
 update-environment:
 	rsync -avz --relative $(ENVIRONMENT) exchange/$(COURSE)/outbound/
-	cd exchange/$(COURSE)/outbound/ && git add $(ENVIRONMENT) && git commit -m "Updated environment" && git pull && git push
+	-cd exchange/$(COURSE)/outbound/ && git add $(ENVIRONMENT) && git commit -m "Updated environment" && git pull && git push
 	rsync -avz --relative $(ENVIRONMENT) ComputerLabInfrastructure/
-	cd ComputerLabInfrastructure/ && git add $(ENVIRONMENT) && git commit -m "Updated environment" && git pull && git push
-	$(course) env update
+	-cd ComputerLabInfrastructure/ && git add $(ENVIRONMENT) && git commit -m "Updated environment" && git pull && git push
+	cd binder && conda env update && ./postBuild
 	ssh sif $(course) env update
