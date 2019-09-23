@@ -93,7 +93,7 @@ submit() {
         echo $SCRIPT: soumission du dossier $COURSE/$ASSIGNMENT
         run ssh $USER@$SIF "cd $COURSE && $SCRIPT submit $ASSIGNMENT"
     else
-        run nbgrader submit --Exchange.root=$EXCHANGE --course=$COURSE $ASSIGNMENT
+        run nbgrader submit $ASSIGNMENT
     fi
 }
 
