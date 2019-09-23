@@ -104,7 +104,7 @@ collect() {
     run nbgrader collect $ASSIGNMENT
     run git pull
     run git add submitted
-    run git -m "Collect $ASSIGNMENT" submitted
+    run git commit -m "Collect $ASSIGNMENT" submitted
     run git push
 }
 
