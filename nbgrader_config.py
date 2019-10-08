@@ -129,7 +129,7 @@ c.CourseDirectory.autograded_directory = 'exchange/Info114/autograded'
 c.CourseDirectory.feedback_directory = 'exchange/Info114/feedback_generated'
 
 ## List of file names or file globs to be ignored when copying directories.
-c.CourseDirectory.ignore = ['.ipynb_checkpoints', '.nbgrader.log', '*.pyc', '__pycache__', 'feedback', '*~', '.*', 'mini-dataset', 'my_dataset', 'mydataset']
+c.CourseDirectory.ignore = ['.ipynb_checkpoints', '.nbgrader.log', '*.pyc', '__pycache__', 'feedback', '*~', '.*', 'mini-dataset', 'my_dataset', 'mydataset', 'core*']
 
 ## File glob to match notebook names, excluding the '.ipynb' extension. This can
 #  be changed to filter by notebook.
