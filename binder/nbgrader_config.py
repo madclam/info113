@@ -9,5 +9,5 @@ c.CourseDirectory.submitted_directory = os.path.join(exchange, "submitted")
 c.CourseDirectory.feedback_directory  = os.path.join(exchange, "feedback_generated")
 c.ExchangeCollect.check_owner=False
 
-c.CourseDirectory.ignore = ['.ipynb_checkpoints', '.nbgrader.log', '*.pyc', '__pycache__', 'feedback', '*~', '.*', 'mini-dataset', 'my_dataset', 'mydataset', 'core*']
+c.CourseDirectory.ignore = ['.ipynb_checkpoints', '.nbgrader.log', '*.pyc', '__pycache__', 'feedback', '*~', '.*', 'core*']
 c.CourseDirectory.max_file_size = 1000 # Kb
