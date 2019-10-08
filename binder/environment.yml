@@ -17,6 +17,7 @@ dependencies:
 - jupyter_contrib_nbextensions
 - pip
 - pip:
+    - "git+https://github.com/nthiery/nbgrader.git@sif"
     - ordo
     - .
     - "git+https://gitlab.u-psud.fr/Info114/Data.git"
