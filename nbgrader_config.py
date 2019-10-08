@@ -89,7 +89,7 @@ c.IncludeHeaderFooter.header = "source/header.ipynb"
 ## The name of the directory that contains assignment submissions after they have
 #  been autograded. This corresponds to the `nbgrader_step` variable in the
 #  `directory_structure` config option.
-#c.CourseDirectory.autograded_directory = 'autograded'
+c.CourseDirectory.autograded_directory = 'exchange/Info114/autograded'
 
 ## A list of assignments that will be created in the database. Each item in the
 #  list should be a dictionary with the following keys:
@@ -126,10 +126,10 @@ c.IncludeHeaderFooter.header = "source/header.ipynb"
 ## The name of the directory that contains assignment feedback after grading has
 #  been completed. This corresponds to the `nbgrader_step` variable in the
 #  `directory_structure` config option.
-#c.CourseDirectory.feedback_directory = 'feedback'
+c.CourseDirectory.feedback_directory = 'exchange/Info114/feedback_generated'
 
 ## List of file names or file globs to be ignored when copying directories.
-c.CourseDirectory.ignore = ['.ipynb_checkpoints', '.nbgrader.log', '*.pyc', '__pycache__']
+c.CourseDirectory.ignore = ['.ipynb_checkpoints', '.nbgrader.log', '*.pyc', '__pycache__', '*~', '.*', 'mini-dataset', 'my_dataset', 'mydataset']
 
 ## File glob to match notebook names, excluding the '.ipynb' extension. This can
 #  be changed to filter by notebook.
@@ -166,7 +166,7 @@ c.CourseDirectory.ignore = ['.ipynb_checkpoints', '.nbgrader.log', '*.pyc', '__p
 ## The name of the directory that contains assignments that have been submitted
 #  by students for grading. This corresponds to the `nbgrader_step` variable in
 #  the `directory_structure` config option.
-#c.CourseDirectory.submitted_directory = 'submitted'
+c.CourseDirectory.submitted_directory = 'exchange/Info114/submitted'
 
 #------------------------------------------------------------------------------
 # AssignApp(NbGrader) configuration
