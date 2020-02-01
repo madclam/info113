@@ -15,9 +15,12 @@ dependencies:
 - nbgrader
 - nbdime
 - jupyter_contrib_nbextensions
+- sqlite==3.28
+- sqlalchemy==1.3.9
 - pip
 - pip:
-    - "git+https://github.com/nthiery/nbgrader.git@sif"
+# temporarily disabled to avoid conflict with MethNum
+#    - "git+https://github.com/nthiery/nbgrader.git@sif"
     - ordo
     - .
     - "git+https://gitlab.u-psud.fr/Info114/Data.git"
