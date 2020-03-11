@@ -15,8 +15,8 @@ dependencies:
 - nbgrader
 - nbdime
 - jupyter_contrib_nbextensions
-- sqlite==3.28
-- sqlalchemy==1.3.9
+#- sqlite==3.28
+#- sqlalchemy==1.3.9
 - pip
 - pip:
 # temporarily disabled to avoid conflict with MethNum
